@@ -34,6 +34,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="422-zw-p28"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="LfX-hf-Niw"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mc2-2s-E9h">
                                 <rect key="frame" x="0.0" y="260" width="600" height="60"/>

@@ -12,18 +12,19 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
+    
     
     @IBAction func dismiss(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
@@ -31,13 +32,16 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
     }
     
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         let channelCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "channel")
         return channelCell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
