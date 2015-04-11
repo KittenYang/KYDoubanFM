@@ -8,6 +8,25 @@
 
 import UIKit
 
+protocol doubanModelProtocol {
+    func didRecieveResults(results:NSDictionary)
+}
+
 class DoubanModel: NSObject {
    
+    var delegate : doubanModelProtocol?
+    
+    func onSearch(url:String){
+        var URL : NSURL = NSURL(string: url)!
+        var REQUEST : NSURLRequest = NSURLRequest(URL: URL)
+//        NSURLConnection.sendAsynchronousRequest(REQUEST, queue: NSOperationQueue.mainQueue(), completionHandler: {(response:NSURLResponse!,data:NSData!,error:NSError!)->Void in
+//
+//        })
+        
+        NSURLConnection.sendAsynchronousRequest(REQUEST, queue: NSOperationQueue.mainQueue()) { (NSURLResponse, NSData, NSError) -> Void in
+            
+        }
+    }
+    
 }
+
