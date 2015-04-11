@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F8FEB8D1AD7A79700EAF88E /* ChanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8FEB8C1AD7A79700EAF88E /* ChanelViewController.swift */; };
+		5F8FEB8F1AD98AF800EAF88E /* DoubanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8FEB8E1AD98AF800EAF88E /* DoubanModel.swift */; };
 		5F97A7431AD6795D00CDB3C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97A7421AD6795D00CDB3C1 /* AppDelegate.swift */; };
 		5F97A7451AD6795D00CDB3C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97A7441AD6795D00CDB3C1 /* ViewController.swift */; };
 		5F97A7481AD6795D00CDB3C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F97A7461AD6795D00CDB3C1 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		5F8FEB8C1AD7A79700EAF88E /* ChanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChanelViewController.swift; sourceTree = "<group>"; };
+		5F8FEB8E1AD98AF800EAF88E /* DoubanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubanModel.swift; sourceTree = "<group>"; };
 		5F97A73D1AD6795D00CDB3C1 /* DoubanFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubanFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F97A7411AD6795D00CDB3C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F97A7421AD6795D00CDB3C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				5F97A7441AD6795D00CDB3C1 /* ViewController.swift */,
 				5F8FEB8C1AD7A79700EAF88E /* ChanelViewController.swift */,
 				5F97A7461AD6795D00CDB3C1 /* Main.storyboard */,
+				5F8FEB8E1AD98AF800EAF88E /* DoubanModel.swift */,
 				5F97A7491AD6795D00CDB3C1 /* Images.xcassets */,
 				5F97A74B1AD6795D00CDB3C1 /* LaunchScreen.xib */,
 				5F97A7401AD6795D00CDB3C1 /* Supporting Files */,
@@ -217,6 +220,7 @@
 			files = (
 				5F97A7451AD6795D00CDB3C1 /* ViewController.swift in Sources */,
 				5F8FEB8D1AD7A79700EAF88E /* ChanelViewController.swift in Sources */,
+				5F8FEB8F1AD98AF800EAF88E /* DoubanModel.swift in Sources */,
 				5F97A7431AD6795D00CDB3C1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
