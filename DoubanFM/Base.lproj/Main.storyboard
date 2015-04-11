@@ -201,6 +201,9 @@
                             <constraint firstItem="cQq-P7-pFf" firstAttribute="top" secondItem="1br-9K-SXO" secondAttribute="bottom" id="sIc-hd-o2N"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="channelTableView" destination="1br-9K-SXO" id="YPH-46-ay2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S25-Bb-Sbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
