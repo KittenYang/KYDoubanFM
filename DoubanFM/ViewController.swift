@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
+    @IBOutlet var cover: UIImageView!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var progress: UIProgressView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,6 +34,18 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let doubanCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "douban")
         return doubanCell
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toChannel" {
+            println("YES,it's toChannel")
+        }
+    }
 
 }
+
+
+
+
+
 

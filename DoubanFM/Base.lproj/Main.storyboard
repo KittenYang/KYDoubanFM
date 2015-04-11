@@ -52,7 +52,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="RCC-Ba-HPC" kind="presentation" id="nbq-AM-QBw"/>
+                                            <segue destination="RCC-Ba-HPC" kind="presentation" identifier="toChannel" id="nbq-AM-QBw"/>
                                         </connections>
                                     </button>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="47Z-Wb-MFu">
@@ -120,6 +120,12 @@
                             <constraint firstItem="Mc2-2s-E9h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tMt-K5-XQf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cover" destination="pmf-wy-98k" id="vgf-8b-Wws"/>
+                        <outlet property="progress" destination="47Z-Wb-MFu" id="Seo-SF-514"/>
+                        <outlet property="tableView" destination="cs6-n3-yg3" id="KAO-kc-QZC"/>
+                        <outlet property="timeLabel" destination="5GS-8Y-LXu" id="WvB-zJ-fRL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S25-Bb-Sbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="324"/>
+            <point key="canvasLocation" x="986" y="267"/>
         </scene>
     </scenes>
     <resources>
