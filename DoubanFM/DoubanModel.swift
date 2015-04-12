@@ -19,13 +19,14 @@ class DoubanModel: NSObject {
     func onSearch(url:String){
         var URL : NSURL = NSURL(string: url)!
         var REQUEST : NSURLRequest = NSURLRequest(URL: URL)
-//        NSURLConnection.sendAsynchronousRequest(REQUEST, queue: NSOperationQueue.mainQueue(), completionHandler: {(response:NSURLResponse!,data:NSData!,error:NSError!)->Void in
-//
-//        })
-        
-        NSURLConnection.sendAsynchronousRequest(REQUEST, queue: NSOperationQueue.mainQueue()) { (NSURLResponse, NSData, NSError) -> Void in
+        NSURLConnection.sendAsynchronousRequest(REQUEST, queue: NSOperationQueue.mainQueue(), completionHandler: {(response:NSURLResponse!,data:NSData!,error:NSError!)->Void in
             
-        }
+            var jsonResult : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves, error: nil) as! NSDictionary
+            
+            self.delegate?.didRecieveResults(jsonResult)
+            
+        })
+        
     }
     
 }
