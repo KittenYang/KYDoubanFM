@@ -47,7 +47,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func didRecieveResults(results:NSDictionary){
         if (results["song"] != nil) {
-            
+            println(results)
             self.songsList = results["song"] as! NSArray
             self.tableView.reloadData()
             
