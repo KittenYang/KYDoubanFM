@@ -11,6 +11,7 @@ import UIKit
 class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet var channelTableView: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

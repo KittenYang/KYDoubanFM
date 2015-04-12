@@ -16,13 +16,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var progress: UIProgressView!
     
     var doubanModel : DoubanModel = DoubanModel()
+    var songsList : NSArray = NSArray()    //歌曲列表
+    var channelsList : NSArray = NSArray() //频道列表
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         doubanModel.delegate = self
-        doubanModel.searchWithUrl("http://www.douban.com/j/app/radio/channels")
-        doubanModel.searchWithUrl("http://douban.fm/j/mine/playlist?channel=0")
+        doubanModel.searchWithUrl("http://www.douban.com/j/app/radio/channels") //频道列表
+        doubanModel.searchWithUrl("http://douban.fm/j/mine/playlist?channel=0") //歌曲列表
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,19 +34,26 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 20
+        return self.songsList.count
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let doubanCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "douban")
+        doubanCell.textLabel?.text = self.songsList[indexPath.row]["title"] as? String
         return doubanCell
     }
     
     
     func didRecieveResults(results:NSDictionary){
-        println("================")
-        println(results)
+        if (results["song"] != nil) {
+            
+            self.songsList = results["song"] as! NSArray
+            self.tableView.reloadData()
+            
+        }else if(results["channels"] != nil){
+            self.channelsList = results["channels"] as! NSArray
+        }
         
     }
     
