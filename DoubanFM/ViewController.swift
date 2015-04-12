@@ -8,15 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol{
 
     @IBOutlet var cover: UIImageView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var progress: UIProgressView!
     
+    var doubanModel : DoubanModel = DoubanModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        doubanModel.delegate = self
+        doubanModel.searchWithUrl("http://www.douban.com/j/app/radio/channels")
+        doubanModel.searchWithUrl("http://douban.fm/j/mine/playlist?channel=0")
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +42,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     
+    func didRecieveResults(results:NSDictionary){
+        println("================")
+        println(results)
+        
+    }
     
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toChannel" {
             println("YES,it's toChannel")
