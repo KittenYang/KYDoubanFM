@@ -40,8 +40,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let doubanCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "douban")
-        doubanCell.textLabel?.text = self.songsList[indexPath.row]["title"] as? String
-        doubanCell.detailTextLabel?.text = self.songsList[indexPath.row]["artist"] as? String
+        let rowData : NSDictionary = (self.songsList[indexPath.row] as? NSDictionary)!
+        doubanCell.textLabel?.text = rowData["title"] as? String
+        doubanCell.detailTextLabel?.text = rowData["artist"] as? String
+        doubanCell.imageView?.image = UIImage(named: "cover")
         return doubanCell
     }
     
