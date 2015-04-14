@@ -16,20 +16,22 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var tableView: UITableView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var progress: UIProgressView!
-    
+
+    // 用一个字典保存对应的地址和图片到本地
+    var imgCache = Dictionary<String,UIImage>()
     var audioPlayer : MPMoviePlayerController = MPMoviePlayerController() //播放器实例
     var doubanModel : DoubanModel = DoubanModel()
     var songsList : NSArray = NSArray()    //歌曲列表
     var channelsList : NSArray = NSArray() //频道列表
+    var timer:NSTimer?
 
-    // 用一个字典保存对应的地址和图片到本地
-    var imgCache = Dictionary<String,UIImage>()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         doubanModel.delegate = self
         doubanModel.searchWithUrl("http://www.douban.com/j/app/radio/channels") //频道列表
         doubanModel.searchWithUrl("http://douban.fm/j/mine/playlist?channel=0") //歌曲列表
+        
+        self.progress.progress = 0.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,9 +124,21 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func onSetAudio(url:String){
+        timer?.invalidate()
+        timeLabel.text = "00:00"
         self.audioPlayer.stop()
         self.audioPlayer.contentURL = NSURL(string: url)
         self.audioPlayer.play()
+        timer = NSTimer(timeInterval: 0.4, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+    }
+    
+    func updateTime (){
+        let currentPlaybackTime = audioPlayer.currentPlaybackTime // 已经播放的时间
+        if (currentPlaybackTime > 0.0){
+            let duration = audioPlayer.duration
+            let percent : CFloat = CFloat(min(1, max(0, (currentPlaybackTime/duration))))
+            self.progress .setProgress(percent, animated: true)
+        }
     }
     
     func onSetImage(url:String){
