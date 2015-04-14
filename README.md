@@ -5,8 +5,11 @@
 使用了两个豆瓣FM接口： 
 
 *频道列表*
+
 [http://www.douban.com/j/app/radio/channels](http://www.douban.com/j/app/radio/channels)
+
 *歌曲列表*
+
 [http://douban.fm/j/mine/playlist?channel=0](http://douban.fm/j/mine/playlist?channel=0)
 
 复习了Swift如果使用网络请求和数据缓存，以及协议protocol的使用、MPMoviePlayerController的使用、以及加深了Swift语法的熟练程度。
@@ -20,6 +23,8 @@
 点击第二个VC(也就是频道列表之后)，会跳转到第一个VC(也就是歌曲列表)，并且加载出选中频道的所有歌曲。
 
 点击图片可以实现暂停播放、继续播放。并且实现了进度条和进度时间。
+
+点击歌曲列表的不同cell可以实现歌曲的切换。
 
 
 ![](ss1.png)
