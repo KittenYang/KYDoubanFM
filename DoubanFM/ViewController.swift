@@ -154,11 +154,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
-//    func playNow(){
-//        self.audioPlayer.play()
-//        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-//    }
-    
     func updateTime (){
         let currentPlaybackTime = audioPlayer.currentPlaybackTime // 已经播放的时间
         if (currentPlaybackTime > 0.0){
