@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol {
 
     @IBOutlet var channelTableView: UITableView!
 
+    var channelData:NSArray = NSArray()
+    var channelModel : DoubanModel = DoubanModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        channelModel.delegate = self
+        channelModel.searchWithUrl("http://www.douban.com/j/app/radio/channels")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +35,7 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
-        return 20
+        return channelData.count
         
     }
     
@@ -39,6 +43,8 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         let channelCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "channel")
+        let rowData : NSDictionary = self.channelData[indexPath.row] as! NSDictionary
+        channelCell.textLabel?.text = rowData["name"] as? String
         return channelCell
     }
     
@@ -46,6 +52,14 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func didRecieveResults(results:NSDictionary){
+        
+        self.channelData = results["channels"] as! NSArray
+        self.channelTableView.reloadData()
+//        println(results)
+    }
+    
 
 }
 
