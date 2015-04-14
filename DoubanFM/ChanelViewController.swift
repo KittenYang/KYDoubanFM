@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol channelProtocol{
+    func onChangeChannel(channel_id:String)
+}
+
 class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet var channelTableView: UITableView!
 
     var channelData:NSArray = NSArray()
-    
+    var delegate : channelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,11 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        var rowData : NSDictionary = self.channelData[indexPath.row] as! NSDictionary
+        let channel_id : AnyObject = rowData["channel_id"]!   // 使用AnyObject类型是因为豆瓣那边0的时候是int类型，1的时候是string类型
+        let channel : String = "channel = \(channel_id)"
+        self.delegate?.onChangeChannel(channel)
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
