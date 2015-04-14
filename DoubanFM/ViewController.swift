@@ -71,6 +71,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         return doubanCell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        let rowData : NSDictionary = self.songsList[indexPath.row] as! NSDictionary
+        let audioUrl : String = rowData["url"] as! String
+        onSetAudio(audioUrl)
+        let imageUrl : String = rowData["picture"] as! String
+        onSetImage(imageUrl)
+        
+    }
+    
     
     func didRecieveResults(results:NSDictionary){
         if (results["song"] != nil) {
