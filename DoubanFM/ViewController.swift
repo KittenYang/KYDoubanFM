@@ -57,9 +57,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
         //如果本地缓存（也就是那个字典）里面没有地址对应的图片，我们就去异步加载一下
         if (image == nil) {
-            let imgURL : NSURL? =  NSURL(string: url)
-            let request : NSURLRequest? = NSURLRequest(URL: imgURL!)
-            NSURLConnection.sendAsynchronousRequest(request!, queue: NSOperationQueue.mainQueue(), completionHandler: { (response:NSURLResponse!, data:NSData!, err:NSError!) -> Void in
+            let imgURL : NSURL =  NSURL(string: url)!
+            let request : NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response:NSURLResponse!, data:NSData!, err:NSError!) -> Void in
                 var img = UIImage(data: data)
                 doubanCell.imageView?.image = img
                 self.imgCache[url] = img
@@ -77,6 +77,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             println(results)
             self.songsList = results["song"] as! NSArray
             self.tableView.reloadData()
+            
+            //默认播放第一条数据音乐
+            let firstDic : NSDictionary = self.songsList[0] as! NSDictionary
+            let audioUrl : String = firstDic["url"] as! String
+            onSetAudio(audioUrl)
+            let imgUrl : String  = firstDic["picture"] as! String
+            onSetImage(imgUrl)
             
         }else if(results["channels"] != nil){
             self.channelsList = results["channels"] as! NSArray
