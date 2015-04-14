@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import QuartzCore
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol,channelProtocol{
 
@@ -36,7 +37,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     
-
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath){
+        cell.layer.transform = CATransform3DScale(cell.layer.transform, 0.1, 0.1, 0.1)
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            cell.layer.transform = CATransform3DIdentity
+        })
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return self.songsList.count
