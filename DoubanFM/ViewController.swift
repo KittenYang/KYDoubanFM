@@ -129,7 +129,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.audioPlayer.stop()
         self.audioPlayer.contentURL = NSURL(string: url)
         self.audioPlayer.play()
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
     }
     
     func updateTime (){
@@ -142,9 +142,25 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             
             //设置文本时间
             let allSeconds : Int = Int(currentPlaybackTime)
-            let minute : Int = (allSeconds - allSeconds % 60) % 60
+            let minute : Int = (allSeconds - allSeconds % 60) / 60
             let second : Int = allSeconds % 60
-            self.timeLabel.text = "\(minute):\(second)"
+
+            
+            var minutesTime:String = ""
+            if minute < 10 {
+                minutesTime = "0\(minute)"
+            }else{
+                minutesTime = "\(minute)"
+            }//分钟的文字
+            
+            var secTime : String = ""
+            if second < 10{
+                secTime = "0\(second)"
+            }else{
+                secTime = "\(second)"
+            }//秒钟的文字
+            
+            self.timeLabel.text = "\(minutesTime):\(secTime)"
         }
     }
     
