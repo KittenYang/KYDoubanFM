@@ -135,9 +135,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func updateTime (){
         let currentPlaybackTime = audioPlayer.currentPlaybackTime // 已经播放的时间
         if (currentPlaybackTime > 0.0){
+            //设置进度条
             let duration = audioPlayer.duration
             let percent : CFloat = CFloat(min(1, max(0, (currentPlaybackTime/duration))))
             self.progress .setProgress(percent, animated: true)
+            
+            //设置文本时间
+            let allSeconds : Int = Int(currentPlaybackTime)
+            let minute : Int = (allSeconds - allSeconds % 60) % 60
+            let second : Int = allSeconds % 60
+            self.timeLabel.text = "\(minute):\(second)"
         }
     }
     
