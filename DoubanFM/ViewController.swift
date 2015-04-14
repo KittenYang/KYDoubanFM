@@ -98,9 +98,17 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func onSetImage(url:String){
-        let image = self.imageCache[url] as? UIImage
+        let image = self.imgCache[url] as UIImage!
         if (image == nil){
-            
+            let imgURL : NSURL = NSURL(string: url)!
+            let req : NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue.mainQueue(), completionHandler: { (resp:NSURLResponse!, data:NSData!, err:NSError!) -> Void in
+                let image = UIImage(data: data)
+                self.cover.image = image
+                self.imgCache[url] = image
+            })
+        }else{
+            self.cover.image = image
         }
         
     }
