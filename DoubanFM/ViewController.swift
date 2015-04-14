@@ -48,9 +48,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         if paused {
             paused = false
             self.audioPlayer.play()
+            self.pauseAndPlay.image = UIImage(named: "pause")
         }else{
             paused = true
             self.audioPlayer.pause()
+            self.pauseAndPlay.image = UIImage(named: "cover")
         }
     }
     
@@ -145,10 +147,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.audioPlayer.stop()
         self.audioPlayer.contentURL = NSURL(string: url)
         self.audioPlayer.play()
+        paused = false
+        self.pauseAndPlay.image = UIImage(named: "pause")
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         
-        
     }
+    
+//    func playNow(){
+//        self.audioPlayer.play()
+//        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+//    }
     
     func updateTime (){
         let currentPlaybackTime = audioPlayer.currentPlaybackTime // 已经播放的时间
@@ -163,7 +171,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let minute : Int = (allSeconds - allSeconds % 60) / 60
             let second : Int = allSeconds % 60
 
-            
+                 
             var minutesTime:String = ""
             if minute < 10 {
                 minutesTime = "0\(minute)"
