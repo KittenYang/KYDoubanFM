@@ -50,7 +50,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.audioPlayer.play()
         }else{
             paused = true
-            self.audioPlayer.stop()
+            self.audioPlayer.pause()
         }
     }
     
@@ -139,12 +139,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func onSetAudio(url:String){
+
         timer?.invalidate()
         timeLabel.text = "00:00"
         self.audioPlayer.stop()
         self.audioPlayer.contentURL = NSURL(string: url)
         self.audioPlayer.play()
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        
+        
     }
     
     func updateTime (){
