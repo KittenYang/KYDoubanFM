@@ -8,18 +8,15 @@
 
 import UIKit
 
-class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol {
+class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet var channelTableView: UITableView!
 
     var channelData:NSArray = NSArray()
-    var channelModel : DoubanModel = DoubanModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        channelModel.delegate = self
-        channelModel.searchWithUrl("http://www.douban.com/j/app/radio/channels")
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,13 +50,7 @@ class ChanelViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func didRecieveResults(results:NSDictionary){
-        
-        self.channelData = results["channels"] as! NSArray
-        self.channelTableView.reloadData()
-//        println(results)
-    }
-    
+
 
 }
 

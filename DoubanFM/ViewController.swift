@@ -102,10 +102,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
 
+    //页面跳转的时候把数组传过去
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toChannel" {
-            println("YES,it's toChannel")
-        }
+        var channelC : ChanelViewController = segue.destinationViewController as! ChanelViewController
+        channelC.channelData = self.channelsList
     }
     
     func onSetAudio(url:String){
