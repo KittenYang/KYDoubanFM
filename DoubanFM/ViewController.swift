@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol{
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var progress: UIProgressView!
     
+    var audioPlayer : MPMoviePlayerController = MPMoviePlayerController() //播放器实例
     var doubanModel : DoubanModel = DoubanModel()
     var songsList : NSArray = NSArray()    //歌曲列表
     var channelsList : NSArray = NSArray() //频道列表
@@ -89,7 +91,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    func onSetAudio(url:String){
+        self.audioPlayer.stop()
+        self.audioPlayer.contentURL = NSURL(string: url)
+        self.audioPlayer.play()
+    }
     
+    func onSetImage(url:String){
+        let image = self.imageCache[url] as? UIImage
+        if (image == nil){
+            
+        }
+        
+    }
 
 }
 
