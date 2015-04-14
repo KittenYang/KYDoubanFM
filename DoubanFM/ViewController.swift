@@ -149,6 +149,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.audioPlayer.play()
         paused = false
         self.pauseAndPlay.image = UIImage(named: "pause")
+        self.progress.progress = 0.0
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         
     }
