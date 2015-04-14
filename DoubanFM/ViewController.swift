@@ -16,7 +16,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var tableView: UITableView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var progress: UIProgressView!
-
+    @IBOutlet var pauseAndPlay: UIImageView!
+    var paused : Bool = false
+    
     // 用一个字典保存对应的地址和图片到本地
     var imgCache = Dictionary<String,UIImage>()
     var audioPlayer : MPMoviePlayerController = MPMoviePlayerController() //播放器实例
@@ -27,17 +29,30 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.progress.progress = 0.0
         doubanModel.delegate = self
         doubanModel.searchWithUrl("http://www.douban.com/j/app/radio/channels") //频道列表
         doubanModel.searchWithUrl("http://douban.fm/j/mine/playlist?channel=0") //歌曲列表
-        
-        self.progress.progress = 0.0
+        let pauseTap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "pauseAndPlayTap:")
+        self.pauseAndPlay.addGestureRecognizer(pauseTap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    func pauseAndPlayTap(ges:UITapGestureRecognizer){
+
+        if paused {
+            paused = false
+            self.audioPlayer.play()
+        }else{
+            paused = true
+            self.audioPlayer.stop()
+        }
+    }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath){
         cell.layer.transform = CATransform3DScale(cell.layer.transform, 0.1, 0.1, 0.1)
@@ -163,6 +178,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.timeLabel.text = "\(minutesTime):\(secTime)"
         }
     }
+    
     
     func onSetImage(url:String){
         let image = self.imgCache[url] as UIImage!

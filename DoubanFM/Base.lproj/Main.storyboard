@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="pmf-wy-98k">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="pmf-wy-98k">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="Wak-Jm-RMt"/>
@@ -105,11 +105,21 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-yB-1U5" userLabel="pause_play">
+                                <rect key="frame" x="275" y="135" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6Kf-df-PRd"/>
+                                    <constraint firstAttribute="height" constant="50" id="oZx-ew-dcx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pmf-wy-98k" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="41P-HQ-Nuf"/>
                             <constraint firstAttribute="trailing" secondItem="Mc2-2s-E9h" secondAttribute="trailing" id="7l9-MN-Gq1"/>
+                            <constraint firstItem="HmJ-yB-1U5" firstAttribute="centerY" secondItem="pmf-wy-98k" secondAttribute="centerY" id="Eee-8J-Gjc"/>
+                            <constraint firstAttribute="centerX" secondItem="HmJ-yB-1U5" secondAttribute="centerX" id="IHK-J4-Zns"/>
                             <constraint firstItem="cs6-n3-yg3" firstAttribute="top" secondItem="pmf-wy-98k" secondAttribute="bottom" id="PDN-85-6Mg"/>
                             <constraint firstItem="cs6-n3-yg3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bF3-aa-Q13"/>
                             <constraint firstItem="cs6-n3-yg3" firstAttribute="top" secondItem="Mc2-2s-E9h" secondAttribute="bottom" id="eWg-or-d7K"/>
@@ -122,6 +132,7 @@
                     </view>
                     <connections>
                         <outlet property="cover" destination="pmf-wy-98k" id="vgf-8b-Wws"/>
+                        <outlet property="pauseAndPlay" destination="HmJ-yB-1U5" id="Uke-8b-Kht"/>
                         <outlet property="progress" destination="47Z-Wb-MFu" id="Seo-SF-514"/>
                         <outlet property="tableView" destination="cs6-n3-yg3" id="KAO-kc-QZC"/>
                         <outlet property="timeLabel" destination="5GS-8Y-LXu" id="WvB-zJ-fRL"/>
@@ -212,5 +223,6 @@
     </scenes>
     <resources>
         <image name="cover" width="500" height="500"/>
+        <image name="pause" width="460" height="460"/>
     </resources>
 </document>
