@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,doubanModelProtocol,channelProtocol{
 
     @IBOutlet var cover: UIImageView!
     @IBOutlet var tableView: UITableView!
@@ -36,6 +36,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     
+
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return self.songsList.count
@@ -82,6 +83,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     
+    func onChangeChannel(channel_id:String){
+        let channelUrl : String = "http://douban.fm/j/mine/playlist?\(channel_id)"
+        doubanModel.searchWithUrl(channelUrl)
+    }
+    
     func didRecieveResults(results:NSDictionary){
         if (results["song"] != nil) {
             println(results)
@@ -104,8 +110,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     //页面跳转的时候把数组传过去
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var channelC : ChanelViewController = segue.destinationViewController as! ChanelViewController
-        channelC.channelData = self.channelsList
+        var channelVC : ChanelViewController = segue.destinationViewController as! ChanelViewController
+        channelVC.delegate = self
+        channelVC.channelData = self.channelsList
     }
     
     func onSetAudio(url:String){
